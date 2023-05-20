@@ -46,7 +46,7 @@ pipeline {
 					sh 'docker images --format="{{.Repository}}" | grep -w "${SPRING_IMAGE}" && docker rmi ${SPRING_IMAGE} || true'
  					sh 'docker ps -a --filter="name=${SPRING_CONTAINER}" --format="{{.Names}}" | grep -w "${SPRING_CONTAINER}" && (docker stop ${SPRING_CONTAINER} && docker rm ${SPRING_CONTAINER}) || true'
  					sh 'docker build -t ${SPRING_IMAGE}:latest .'
-					sh 'docker run -p 8082:8080 -d --name ${SPRING_CONTAINER} --network ${BRIDGE_NETWORK} ${SPRING_IMAGE}:latest'
+					sh 'docker run -p 8082:8080 -d --name ${SPRING_CONTAINER} ${SPRING_IMAGE}:latest'
 					}
 				}
 			}
