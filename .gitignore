@@ -37,3 +37,5 @@ out/
 .vscode/
 .gitsecret/keys/random_seed
 !*.secret
+
+application-secret.yml
