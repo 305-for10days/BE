@@ -25,7 +25,6 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     }
 
 
-
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2UserService<OAuth2UserRequest, OAuth2User> defaultOAuth2UserService = new DefaultOAuth2UserService();
@@ -34,6 +33,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         CustomOAuth2User customOAuth2User = new KakaoOAuth2User(defaultOAuth2User.getAttributes());
 
         User user = userService.saveOrUpdate(customOAuth2User);
+        customOAuth2User.setId(user.getId());
 
 //        String accessToken = userRequest.getAccessToken().getTokenValue();
         return customOAuth2User;
