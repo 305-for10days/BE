@@ -7,10 +7,12 @@ import java.util.Map;
 import jy.demo.common.UserRole;
 import jy.demo.model.User;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 @Getter
+@Setter
 public class CustomOAuth2User implements OAuth2User {
 
     protected Long id;
