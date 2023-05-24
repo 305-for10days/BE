@@ -1,6 +1,7 @@
 package jy.demo.config;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import jy.demo.security.jwt.filter.FilterSkipMatcher;
 import jy.demo.security.jwt.filter.HeaderTokenExtractor;
@@ -11,6 +12,7 @@ import jy.demo.security.oauth2.CustomAuthenticationSuccessHandler;
 import jy.demo.security.oauth2.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,6 +21,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -67,9 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
             .csrf().disable()
-//            .cors()
-
-            .and()
+            .cors().and()
             .headers().frameOptions().sameOrigin()
 
             .and()
@@ -87,19 +90,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .userService(customOAuth2UserService);
     }
 
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//
-//        configuration.setAllowedOrigins(Arrays.asList(FRONTEND_URL, BACKEND_URL));
-//        configuration.addAllowedHeader("*");
-//        configuration.addAllowedMethod("*");
-////        configuration.setAllowCredentials(true);
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.setAllowedOrigins(Arrays.asList(FRONTEND_URL, BACKEND_URL));
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
 
     private JwtAuthFilter jwtFilter() throws Exception {
