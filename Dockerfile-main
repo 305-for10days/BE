@@ -1,4 +1,4 @@
 FROM openjdk:11-jdk
 ARG JAR_FILE=*.jar
 COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar", "--Dspring.config.activate.on-profile=prod"]
+ENTRYPOINT ["java", "-Dspring.config.activate.on-profile=prod", "-jar", "/app.jar"]
