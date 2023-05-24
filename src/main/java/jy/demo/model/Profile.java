@@ -51,5 +51,9 @@ public class Profile {
     @Column(name = "bmi", nullable = false)
     private Double bmi;
 
+    @Column(name = "MinutePerWorkout", nullable = false)
+    private Integer minutePerWorkout;
 
+    @Column(name = "severalTimesWeek", nullable = false)
+    private Integer severalTimesWeek;
 }

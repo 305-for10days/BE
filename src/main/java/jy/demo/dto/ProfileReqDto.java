@@ -26,7 +26,12 @@ public class ProfileReqDto {
     @NotNull(message = ValidationMsg.weightMsg)
     private Integer weight;
 
+    @NotNull(message = ValidationMsg.bmiMsg)
     private Double bmi;
+
+    private Integer minutePerWorkout;
+
+    private Integer severalTimesWeek;
 
     public Profile toEntity(Long userId) {
         return Profile.builder()
@@ -35,6 +40,8 @@ public class ProfileReqDto {
             .height(height)
             .weight(weight)
             .bmi(bmi)
+            .minutePerWorkout(minutePerWorkout)
+            .severalTimesWeek(severalTimesWeek)
             .build();
     }
 

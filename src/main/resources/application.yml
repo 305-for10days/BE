@@ -2,16 +2,6 @@ spring:
   profiles:
     include:
       - secret
-#---
-#spring:
-#  profiles:
-#    active: local
-#
-#---
-#spring:
-#  profiles:
-#    active: prod
-
   h2:
     console:
       enabled: true
