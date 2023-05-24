@@ -24,7 +24,6 @@ pipeline {
             steps {
                 echo 'Building the application...'
                 script {
-                    // Use the Gradle Wrapper if your project uses Gradle
                     sh './gradlew build -x test'
                 }
             }
@@ -34,8 +33,13 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 script {
+                    if (env.BRANCH_NAME == 'main') {
+                      sh './gradlew test -Pspring.profiles.active=prod'
+                    }
+                    if (env.BRANCH_NAME == 'develop') {
+                      sh './gradlew test -Pspring.profiles.active=dev'
+                    }
                     // Use the Gradle Wrapper if your project uses Gradle
-                    sh './gradlew test'
                 }
             }
         }

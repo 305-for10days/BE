@@ -16,7 +16,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ProfileReqDto {
 
-    // TODO: 운동목적 연관관계 필드 추가
     @NotNull(message = ValidationMsg.genderMsg)
     private Gender gender;
 
