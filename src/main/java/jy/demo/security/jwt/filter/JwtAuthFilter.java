@@ -2,6 +2,13 @@ package jy.demo.security.jwt.filter;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.Objects;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import jy.demo.common.HttpResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -11,14 +18,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Objects;
-
 @WebServlet
 public class JwtAuthFilter extends AbstractAuthenticationProcessingFilter {
 
@@ -27,17 +26,18 @@ public class JwtAuthFilter extends AbstractAuthenticationProcessingFilter {
 
     public JwtAuthFilter(
         RequestMatcher requestMatcher,
-        HeaderTokenExtractor extractor){
+        HeaderTokenExtractor extractor) {
         super(requestMatcher);
         this.extractor = extractor;
         this.mapper = new ObjectMapper();
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+        throws AuthenticationException, IOException, ServletException {
         String tokenPayload = request.getHeader("Authorization");
 
-        if (Objects.isNull(tokenPayload)){
+        if (Objects.isNull(tokenPayload)) {
             response.setContentType("application/json");
             response.setCharacterEncoding("utf-8");
             ResponseEntity<String> responseEntity =
