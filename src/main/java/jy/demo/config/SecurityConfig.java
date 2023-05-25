@@ -1,7 +1,6 @@
 package jy.demo.config;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import jy.demo.security.jwt.filter.FilterSkipMatcher;
 import jy.demo.security.jwt.filter.HeaderTokenExtractor;
@@ -94,11 +93,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(Arrays.asList(FRONTEND_URL, BACKEND_URL));
+        configuration.addAllowedOrigin("*");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
         configuration.addExposedHeader("Authorization");
-        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
