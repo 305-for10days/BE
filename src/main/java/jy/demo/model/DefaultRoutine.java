@@ -49,7 +49,5 @@ public class DefaultRoutine extends Datetime {
     @Column(name = "calorie")
     private Integer calorie;
 
-    @Column(name = "emotion")
-    private String emotion;
 }
 

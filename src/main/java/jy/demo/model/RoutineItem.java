@@ -1,17 +1,15 @@
 package jy.demo.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import jy.demo.common.WorkoutCategory;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,37 +32,18 @@ public class RoutineItem extends Datetime {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "exercise")
-    private Exercise exercise;
-
+    @Column(name = "goalCalorie")
+    private Integer goalCalorie;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "routineId")
     private Routine routine;
 
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dRoutineId")
     private DefaultRoutine defaultRoutine;
 
-
-    @Column(name = "dtype")
-    @Enumerated(value = EnumType.STRING)
-    private WorkoutCategory dType;
-
-    @Column(name = "time")
-    private Integer time;
-
-    @Column(name = "calorie")
-    private Integer calorie;
-
-    @Column(name = "numberPerSet")
-    private Integer numberPerSet;
-
-    @Column(name = "timesPerSet")
-    private Integer timesPerSet;
-
-    @Column(name = "kg")
-    private Integer kg;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "exerciseId")
+    private Exercise exercise;
 }
