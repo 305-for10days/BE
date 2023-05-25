@@ -5,7 +5,6 @@ import jy.demo.model.User;
 import jy.demo.repository.UserRepository;
 import jy.demo.security.oauth2.CustomOAuth2User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,5 +26,4 @@ public class UserService {
 
         return userRepository.save(user);
     }
-
 }
