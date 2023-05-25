@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import jy.demo.dto.ExerciseResDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -48,4 +49,6 @@ public abstract class Exercise extends Datetime {
 
     @Column(name = "calorie")
     private Integer calorie;
+
+    public abstract ExerciseResDto toExerciseResDto();
 }

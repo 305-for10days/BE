@@ -24,9 +24,7 @@ create table default_routine (
                                  id bigint not null,
                                  created_at timestamp with time zone default current_timestamp,
                                  updated_at timestamp with time zone default current_timestamp,
-                                 calorie integer,
                                  exercise_goal_id bigint,
-                                 user_id bigint,
                                  primary key (id)
 );
 
@@ -93,10 +91,6 @@ create table routine (
 alter table default_routine
     add foreign key (exercise_goal_id)
         references exercise_goal;
-
-alter table default_routine
-    add foreign key (user_id)
-        references _user;
 
 alter table routine_item
     add foreign key (exercise_id)

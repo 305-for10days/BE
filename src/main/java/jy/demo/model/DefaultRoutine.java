@@ -42,12 +42,5 @@ public class DefaultRoutine extends Datetime {
     @OneToMany(mappedBy = "defaultRoutine", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RoutineItem> routineItems;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId")
-    private User user;
-
-    @Column(name = "calorie")
-    private Integer calorie;
-
 }
 
