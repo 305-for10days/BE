@@ -34,7 +34,7 @@ public class ExerciseGoal extends Datetime {
     private Long id;
 
     @OneToMany(mappedBy = "exerciseGoal", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Routine> routines;
+    private List<UserRoutine> routines;
 
     @OneToMany(mappedBy = "exerciseGoal", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<DefaultRoutine> defaultRoutines;

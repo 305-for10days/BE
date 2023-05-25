@@ -54,7 +54,7 @@ VALUES (1, '플랭크', '몸을 지탱하며 가만히 누워있는 운동', '�
        (33, '바벨스쿼트', '바벨을 어깨에 얹고 스쿼트하는 운동', '하체', 'CountAndWeightBased', 5, 15, NULL, NULL, 45),
        (34, '스플릿스쿼트', '한쪽 다리를 앞에 두고 스쿼트하는 운동', '하체', 'CountAndWeightBased', 5, 15, NULL, NULL, 40),
        (35, '백익스텐션', '허리를 강화하는 운동', '하체', 'CountAndWeightBased', 5, 15, NULL, NULL, 35),
-       (36, '케틀벨 스윙', '케틀벨을 앞뒤로 휘두르는 운동', '하체', 'CountAndWeightBased', 5, 15, NULL, NULL, 50),
+       (36, '케틀벨 스윙', '케틀벨을 앞뒤로 휘두르는 운동', '하체', 'CountAndWeightBased', 5, 20, NULL, NULL, 50),
        (37, '랙풀', '무거운 바벨을 들어올리는 운동', '하체', 'CountAndWeightBased', 5,
         15, NULL, NULL, 60),
        (38, '스티프 데드리프트', '다리를 일직선으로 유지하며 바벨을 드는 운동', '하체', 'CountAndWeightBased', 5, 15, NULL, NULL,
@@ -90,44 +90,44 @@ VALUES (5, 5);
 
 
 -- 체지방 감소
-INSERT INTO routine_item (id, goal_calorie, exercise_id, d_routine_id)
-VALUES (1, NULL, 1, 1),  -- 플랭크
-       (2, NULL, 6, 1),  -- 슈퍼맨
-       (3, NULL, 40, 1), -- 걷기
-       (4, NULL, 41, 1);
+INSERT INTO routine_item (id, set_count, exercise_id, d_routine_id)
+VALUES (1, 3, 1, 1),  -- 플랭크
+       (2, 5, 36, 1), -- 케틀벨
+       (3, 2, 40, 1), -- 걷기
+       (4, 2, 41, 1);
 -- 인터벌
 
 -- 골격근량 증가
-INSERT INTO routine_item (id, goal_calorie, exercise_id, d_routine_id)
-VALUES (5, NULL, 4, 2),  -- 크런치
-       (6, NULL, 28, 2), -- 스쿼트
-       (7, NULL, 11, 2), -- 체스트 프레스
-       (8, NULL, 13, 2), -- 랫풀다운
-       (9, NULL, 24, 2);
+INSERT INTO routine_item (id, set_count, exercise_id, d_routine_id)
+VALUES (5, 3, 4, 2),  -- 크런치
+       (6, 3, 28, 2), -- 스쿼트
+       (7, 3, 11, 2), -- 체스트 프레스
+       (8, 3, 13, 2), -- 랫풀다운
+       (9, 3, 24, 2);
 -- 바벨 로우
 
 -- 부위 강화-상체
-INSERT INTO routine_item (id, goal_calorie, exercise_id, d_routine_id)
-VALUES (10, NULL, 9, 3),  -- 오버헤드프레스
-       (11, NULL, 10, 3), -- 펙덱플라이
-       (12, NULL, 11, 3), -- 체스트 프레스
-       (13, NULL, 12, 3), -- 어시스트 풀업
-       (14, NULL, 13, 3);
+INSERT INTO routine_item (id, set_count, exercise_id, d_routine_id)
+VALUES (10, 3, 9, 3),  -- 오버헤드프레스
+       (11, 3, 10, 3), -- 펙덱플라이
+       (12, 3, 11, 3), -- 체스트 프레스
+       (13, 3, 12, 3), -- 어시스트 풀업
+       (14, 3, 13, 3);
 -- 랫풀다운
 
 -- 부위 강화-하체
-INSERT INTO routine_item (id, goal_calorie, exercise_id, d_routine_id)
-VALUES (15, NULL, 28, 4), -- 스쿼트
-       (16, NULL, 29, 4), -- 레그프레스
-       (17, NULL, 30, 4), -- 힙쓰러스트
-       (18, NULL, 31, 4), -- 레그익스텐션
-       (19, NULL, 32, 4);
+INSERT INTO routine_item (id, set_count, exercise_id, d_routine_id)
+VALUES (15, 5, 28, 4), -- 스쿼트
+       (16, 3, 29, 4), -- 레그프레스
+       (17, 3, 30, 4), -- 힙쓰러스트
+       (18, 3, 31, 4), -- 레그익스텐션
+       (19, 3, 32, 4);
 -- 레그컬
 
 -- 부위 강화 - 코어
-INSERT INTO routine_item (id, goal_calorie, exercise_id, d_routine_id)
-VALUES (20, NULL, 1, 5), -- 플랭크
-       (21, NULL, 2, 5), -- 버드 독
-       (22, NULL, 3, 5), -- 롤-아웃
-       (23, NULL, 4, 5), -- 크런치
-       (24, NULL, 5, 5); -- 마운틴 클라이머
+INSERT INTO routine_item (id, set_count, exercise_id, d_routine_id)
+VALUES (20, 3, 1, 5), -- 플랭크
+       (21, 3, 2, 5), -- 버드 독
+       (22, 3, 3, 5), -- 롤-아웃
+       (23, 3, 4, 5), -- 크런치
+       (24, 3, 5, 5); -- 마운틴 클라이머

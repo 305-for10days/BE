@@ -42,7 +42,7 @@ public class User extends Datetime {
     private Profile profile;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Routine> routine;
+    private List<UserRoutine> routine;
 
     @Column(nullable = false)
     private String email;

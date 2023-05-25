@@ -1,6 +1,7 @@
 package jy.demo.model;
 
-
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,28 +27,27 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class RoutineItem extends Datetime {
+public class UserRoutine extends Datetime implements Routine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "goalCalorie")
-    private Integer goalCalorie;
-
-    @Column(name = "setCount")
-    private Integer setCount;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "exerciseGoalId")
+    private ExerciseGoal exerciseGoal;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "routineId")
-    private UserRoutine routine;
+    @JoinColumn(name = "userId")
+    private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "dRoutineId")
-    private DefaultRoutine defaultRoutine;
+    @OneToMany(mappedBy = "routine", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RoutineItem> routineItems;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "exerciseId")
-    private Exercise exercise;
+    @Column(name = "calorie")
+    private Integer calorie;
+
+    @Column(name = "emotion")
+    private String emotion;
 }

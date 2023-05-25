@@ -28,7 +28,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class DefaultRoutine extends Datetime {
+public class DefaultRoutine extends Datetime implements Routine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

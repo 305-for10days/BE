@@ -3,7 +3,7 @@ drop table if exists default_routine;
 drop table if exists exercise;
 drop table if exists exercise_goal;
 drop table if exists profile;
-drop table if exists routine;
+drop table if exists user_routine;
 drop table if exists routine_item;
 drop sequence if exists hibernate_sequence;
 
@@ -49,6 +49,7 @@ create table routine_item (
                               created_at timestamp with time zone default current_timestamp,
                               updated_at timestamp with time zone default current_timestamp,
                               goal_calorie integer,
+                              set_count integer,
                               exercise_id bigint,
                               routine_id bigint,
                               d_routine_id bigint,
@@ -77,7 +78,7 @@ create table profile (
                          primary key (id)
 );
 
-create table routine (
+create table user_routine (
                          id bigint not null,
                          created_at timestamp with time zone default current_timestamp,
                          updated_at timestamp with time zone default current_timestamp,
@@ -98,7 +99,7 @@ alter table routine_item
 
 alter table routine_item
     add foreign key (routine_id)
-        references routine;
+        references user_routine;
 
 alter table routine_item
     add foreign key (d_routine_id)
@@ -108,10 +109,10 @@ alter table profile
     add foreign key (user_id)
         references _user;
 
-alter table routine
+alter table user_routine
     add foreign key (exercise_goal_id)
         references exercise_goal;
 
-alter table routine
+alter table user_routine
     add foreign key (user_id)
         references _user;
