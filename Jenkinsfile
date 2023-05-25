@@ -34,12 +34,11 @@ pipeline {
                 echo 'Running tests...'
                 script {
                     if (env.BRANCH_NAME == 'main') {
-                      sh './gradlew test -Pspring.profiles.active=prod'
+                      sh './gradlew test -Pspring.profiles.active=prod,test'
                     }
                     if (env.BRANCH_NAME == 'develop') {
-                      sh './gradlew test -Pspring.profiles.active=dev'
+                      sh './gradlew test -Pspring.profiles.active=dev,test'
                     }
-                    // Use the Gradle Wrapper if your project uses Gradle
                 }
             }
         }

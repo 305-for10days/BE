@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import jy.demo.common.Gender;
+import javax.persistence.ManyToOne;
+import jy.demo.common.WorkoutCategory;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,33 +27,44 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Profile extends Datetime {
+public class RoutineItem extends Datetime {
 
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "exercise")
+    private Exercise exercise;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gender", nullable = false)
-    private Gender gender;
 
-    @Column(name = "height", nullable = false)
-    private Integer height;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "routineId")
+    private Routine routine;
 
-    @Column(name = "weight", nullable = false)
-    private Integer weight;
 
-    @Column(name = "bmi", nullable = false)
-    private Double bmi;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "dRoutineId")
+    private DefaultRoutine defaultRoutine;
 
-    @Column(name = "MinutePerWorkout", nullable = false)
-    private Integer minutePerWorkout;
 
-    @Column(name = "severalTimesWeek", nullable = false)
-    private Integer severalTimesWeek;
+    @Column(name = "dtype")
+    @Enumerated(value = EnumType.STRING)
+    private WorkoutCategory dType;
+
+    @Column(name = "time")
+    private Integer time;
+
+    @Column(name = "calorie")
+    private Integer calorie;
+
+    @Column(name = "numberPerSet")
+    private Integer numberPerSet;
+
+    @Column(name = "timesPerSet")
+    private Integer timesPerSet;
+
+    @Column(name = "kg")
+    private Integer kg;
 }
