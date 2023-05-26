@@ -28,7 +28,8 @@ public class ExerciseController {
 
 //    @PostMapping("/workouts")
 //    public ExerciseResDto getExerciseRecommend(ExerciseRecommendDto dto) {
-//
+//        Exercise exercise = exerciseService.getExerciseRecommend(dto);
+//        return exercise.toExerciseResDto();
 //    }
 
 }
