@@ -58,7 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web
             .ignoring()
-            .antMatchers("/h2-console/**");
+            .antMatchers("/h2-console/**")
+            .antMatchers("/api/**");
     }
 
     @Override
@@ -73,13 +74,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             .cors().and()
             .headers().frameOptions().sameOrigin()
-
             .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
-
         http
             .oauth2Login()
             .defaultSuccessUrl("/main")

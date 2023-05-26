@@ -1,10 +1,10 @@
 package jy.demo.repository;
 
-import jy.demo.model.ExerciseGoal;
+import jy.demo.model.DefaultRoutine;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ExerciseGoalRepository extends JpaRepository<ExerciseGoal, Long> {
+public interface DefaultRoutineRepository extends JpaRepository<DefaultRoutine, Long> {
 
 }
