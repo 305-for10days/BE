@@ -11,10 +11,12 @@ import lombok.Setter;
 public class RoutineDto {
 
     private Long id;
+    private String goal;
     private List<RoutineItemDto> details;
 
     public RoutineDto(Routine routine) {
         this.id = routine.getId();
+        this.goal = routine.getExerciseGoal().getPurpose();
         this.details = routine.getRoutineItems()
             .stream().map(RoutineItemDto::new).collect(Collectors.toList());
     }

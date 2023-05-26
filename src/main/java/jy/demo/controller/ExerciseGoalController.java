@@ -20,12 +20,9 @@ public class ExerciseGoalController {
 
     @GetMapping("/routine")
     public List<ExerciseGoalResDto> getExerciseGoals() {
-        return exerciseGoalService.getExerciseGoals().stream()
+        return exerciseGoalService.getDefaultRoutines().stream()
             .map(exerciseGoal -> new ExerciseGoalResDto(exerciseGoal, exerciseGoal.getDefaultRoutines()))
             .collect(Collectors.toList());
     }
 
-//    @GetMapping("/user/routine")
-//    public String getRoutine(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-//    }
 }

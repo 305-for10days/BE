@@ -8,4 +8,5 @@ public interface Routine {
 
     public List<RoutineItem> getRoutineItems();
 
+    public ExerciseGoal getExerciseGoal();
 }

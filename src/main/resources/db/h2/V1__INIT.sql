@@ -52,7 +52,7 @@ create table routine_item (
                               set_count integer,
                               exercise_id bigint,
                               routine_id bigint,
-                              d_routine_id bigint,
+                              d_routine_id bigint NULL,
                               primary key (id)
 );
 
