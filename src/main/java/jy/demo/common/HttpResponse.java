@@ -1,8 +1,10 @@
 package jy.demo.common;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+@Getter
 public enum HttpResponse {
     OK(HttpStatus.OK, "OK"),
 
@@ -12,7 +14,8 @@ public enum HttpResponse {
     PROFILE_EXIST(HttpStatus.NOT_FOUND, "사용자의 프로필 데이터가 이미 저장되어있습니다"),
     TOKEN_NOT_FOUND(HttpStatus.UNAUTHORIZED, "토큰이 존재하지 않습니다"),
     INVALID_KAKAO_OAUTH(HttpStatus.NOT_FOUND, "잘못된 카카오 사용자 데이터 입니다"),
-    INVALID_GOOGLE_OAUTH(HttpStatus.NOT_FOUND, "잘못된 구글 사용자 데이터 입니다");
+    INVALID_GOOGLE_OAUTH(HttpStatus.NOT_FOUND, "잘못된 구글 사용자 데이터 입니다"),
+    EXERCISE_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 운동입니다");
 
 
     private final org.springframework.http.HttpStatus httpStatus;

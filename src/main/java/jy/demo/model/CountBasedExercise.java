@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import jy.demo.common.ExerciseType;
 import jy.demo.dto.ExerciseResDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @Builder
 @AllArgsConstructor
-@DiscriminatorValue("CountBased")
+@DiscriminatorValue("COUNT_BASED")
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CountBasedExercise extends Exercise {
@@ -27,7 +28,7 @@ public class CountBasedExercise extends Exercise {
 
     @Override
     public ExerciseResDto toExerciseResDto() {
-        String type = CountBasedExercise.class.getSimpleName();
+        String type = ExerciseType.COUNT_BASED.name();
         int cutLength = 8;
 
         return ExerciseResDto.builder()

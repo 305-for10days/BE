@@ -19,4 +19,5 @@ public class ExerciseResDto {
     private Integer weight;
     private Integer time;
     private Integer distance;
+
 }

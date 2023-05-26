@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import jy.demo.common.ExerciseType;
 import jy.demo.dto.ExerciseResDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @Builder
 @AllArgsConstructor
-@DiscriminatorValue("DistanceBased")
+@DiscriminatorValue("DISTANCE_BASED")
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DistanceBasedExercise extends Exercise {
@@ -26,7 +27,7 @@ public class DistanceBasedExercise extends Exercise {
 
     @Override
     public ExerciseResDto toExerciseResDto() {
-        String type = DistanceBasedExercise.class.getSimpleName();
+        String type = ExerciseType.DISTANCE_BASED.name();
         int cutLength = 8;
         return ExerciseResDto.builder()
             .id(this.getId())

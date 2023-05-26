@@ -110,6 +110,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         skipPathList.add("POST,/signup/**");
         skipPathList.add("POST,/login/**");
         skipPathList.add("GET,/login/**");
+//        skipPathList.add("GET,/api/workouts");
 
         FilterSkipMatcher matcher = new FilterSkipMatcher(
             skipPathList,

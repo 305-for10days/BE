@@ -2,10 +2,12 @@ package jy.demo.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import jy.demo.dto.ExerciseRecommendDto;
 import jy.demo.dto.ExerciseResDto;
 import jy.demo.model.Exercise;
 import jy.demo.service.ExerciseService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,10 +28,10 @@ public class ExerciseController {
             .collect(Collectors.toList());
     }
 
-//    @PostMapping("/workouts")
-//    public ExerciseResDto getExerciseRecommend(ExerciseRecommendDto dto) {
-//        Exercise exercise = exerciseService.getExerciseRecommend(dto);
-//        return exercise.toExerciseResDto();
-//    }
+    @PostMapping("/workouts")
+    public ExerciseRecommendDto getExerciseRecommend(ExerciseRecommendDto dto) {
+        Exercise exercise = exerciseService.getExerciseRecommend(dto);
+        return new ExerciseRecommendDto(exercise, dto.getCalorie(), dto.getSet());
+    }
 
 }
