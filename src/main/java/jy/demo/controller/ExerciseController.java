@@ -26,5 +26,9 @@ public class ExerciseController {
             .collect(Collectors.toList());
     }
 
+//    @PostMapping("/workouts")
+//    public ExerciseResDto getExerciseRecommend(ExerciseRecommendDto dto) {
+//
+//    }
 
 }

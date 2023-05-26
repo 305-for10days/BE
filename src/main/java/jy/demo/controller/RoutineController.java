@@ -32,4 +32,5 @@ public class RoutineController {
         return routineService.getLatestUserRoutine(userDetails.getUserId(), List.of(1L, 2L, 3L, 4L, 5L))
             .stream().map(RoutineDto::new).collect(Collectors.toList());
     }
+
 }
