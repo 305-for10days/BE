@@ -3,6 +3,7 @@ package jy.demo.service;
 import java.util.List;
 import java.util.stream.Collectors;
 import jy.demo.common.HttpResponse;
+import jy.demo.dto.EmojiDto;
 import jy.demo.dto.RoutineDto;
 import jy.demo.dto.RoutineItemDto;
 import jy.demo.exception.DataNotFoundException;
@@ -52,6 +53,7 @@ public class RoutineService {
     }
 
 
+    @Transactional
     public Long saveUserRoutine(Long userId, RoutineDto dto) {
         ExerciseGoal exerciseGoal = exerciseGoalRepository.findByGoal(dto.getGoal())
             .orElseThrow(() -> new DataNotFoundException(HttpResponse.EXERCISE_GOAL_NOT_FOUND));
@@ -91,4 +93,11 @@ public class RoutineService {
             .sum();
     }
 
+    @Transactional
+    public void saveEmoji(Long userId, EmojiDto dto) {
+        UserRoutine userRoutine = userRoutineRepository.findByIdAndUser(dto.getRoutineId(), new User(userId))
+            .orElseThrow(() -> new DataNotFoundException(HttpResponse.USER_ROUTINE_NOT_FOUND));
+
+        userRoutine.setEmoji(dto.getEmojiId());
+    }
 }

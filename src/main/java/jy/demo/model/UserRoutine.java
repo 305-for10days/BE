@@ -51,13 +51,14 @@ public class UserRoutine extends Datetime implements Routine {
     @Column(name = "calorie")
     private Integer calorie;
 
-    @Column(name = "emotion")
-    private String emotion;
+    @Column(name = "emoji")
+    private Long emoji;
 
     public void addRoutineItem(RoutineItem routineItem) {
         if (Objects.isNull(this.routineItems)) {
             this.routineItems = new ArrayList<>();
         }
+
         this.routineItems.add(routineItem);
 
         if (!Objects.equals(routineItem.getRoutine(), this)) {

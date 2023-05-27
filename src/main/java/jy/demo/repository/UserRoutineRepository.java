@@ -1,6 +1,8 @@
 package jy.demo.repository;
 
 import java.util.List;
+import java.util.Optional;
+import jy.demo.model.User;
 import jy.demo.model.UserRoutine;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,4 +24,7 @@ public interface UserRoutineRepository extends JpaRepository<UserRoutine, Long> 
         "AND ur1.exerciseGoal.id IN :exerciseGoalIds")
     List<UserRoutine> findLatestUserRoutines(@Param("userId") Long userId,
         @Param("exerciseGoalIds") List<Long> exerciseGoalIds);
+
+
+    Optional<UserRoutine> findByIdAndUser(Long id, User user);
 }

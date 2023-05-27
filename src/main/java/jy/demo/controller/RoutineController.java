@@ -2,10 +2,13 @@ package jy.demo.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import jy.demo.common.HttpResponse;
+import jy.demo.dto.EmojiDto;
 import jy.demo.dto.IdDto;
 import jy.demo.dto.RoutineDto;
 import jy.demo.security.UserDetailsImpl;
 import jy.demo.service.RoutineService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,6 +46,15 @@ public class RoutineController {
         Long id = routineService.saveUserRoutine(userDetails.getUserId(), dto);
 
         return new IdDto(id);
+    }
+
+    @PostMapping("/user/routine/emoji")
+    public ResponseEntity<String> saveEmoji(@AuthenticationPrincipal UserDetailsImpl userDetails,
+        @RequestBody EmojiDto dto) {
+
+        routineService.saveEmoji(userDetails.getUserId(), dto);
+
+        return HttpResponse.OK.getResponseEntity();
     }
 
 }

@@ -83,7 +83,7 @@ create table user_routine (
                          created_at timestamp with time zone default current_timestamp,
                          updated_at timestamp with time zone default current_timestamp,
                          calorie integer,
-                         emotion varchar(255),
+                         emoji bigint,
                          exercise_goal_id bigint,
                          user_id bigint,
                          primary key (id)

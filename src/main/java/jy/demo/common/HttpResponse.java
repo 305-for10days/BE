@@ -16,7 +16,8 @@ public enum HttpResponse {
     INVALID_KAKAO_OAUTH(HttpStatus.NOT_FOUND, "잘못된 카카오 사용자 데이터 입니다"),
     INVALID_GOOGLE_OAUTH(HttpStatus.NOT_FOUND, "잘못된 구글 사용자 데이터 입니다"),
     EXERCISE_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 운동입니다"),
-    EXERCISE_GOAL_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 운동목적입니다");
+    EXERCISE_GOAL_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 운동목적입니다"),
+    USER_ROUTINE_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 유저 루틴입니다");
 
 
     private final org.springframework.http.HttpStatus httpStatus;

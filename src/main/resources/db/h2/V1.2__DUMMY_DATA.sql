@@ -3,15 +3,15 @@ VALUES (1, '2023-05-26 15:41:23.429082+09', '2023-05-26 15:41:23.429082+09',
         'anwjsrlrhwkd@naver.com', '2798804548', 'USER', '김주영'),
         (2, '2023-05-26 15:41:23.429082+09', '2023-05-26 15:41:23.429082+09',
         'tjd123123@nate.com', '2804043032', 'USER', '박성은');
-INSERT INTO user_routine (id, created_at, updated_at, calorie, emotion, exercise_goal_id, user_id)
-VALUES (1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 100, '기쁨', 1, 1),
-       (2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 150, '만족', 2, 1),
-       (3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 120, '피곤', 3, 1),
-       (4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 90, '신남', 4, 1),
-       (5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 110, '지루함', 5, 1),
-        (11, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 100, '기쁨', 1, 2),
-       (12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 150, '만족', 2, 2),
-       (14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 90, '신남', 4, 2);
+INSERT INTO user_routine (id, created_at, updated_at, calorie, emoji, exercise_goal_id, user_id)
+VALUES (1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 100, 1, 1, 1),
+       (2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 150, 2, 2, 1),
+       (3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 120, 3, 3, 1),
+       (4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 90, 3, 4, 1),
+       (5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 110, 2, 5, 1),
+        (11, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 100, 1, 1, 2),
+       (12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 150, 2, 2, 2),
+       (14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 90, 1, 4, 2);
 
 
 
