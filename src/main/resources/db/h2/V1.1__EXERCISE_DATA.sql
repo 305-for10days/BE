@@ -75,28 +75,28 @@ VALUES (1, '플랭크', '몸을 지탱하며 가만히 누워있는 운동', '�
 
 
 -- 체지방 감소
-INSERT INTO default_routine (id, exercise_goal_id)
-VALUES (1, 1);
+INSERT INTO user_routine (id, exercise_goal_id, is_default)
+VALUES (1, 1, true);
 
 -- 골격근량 증가
-INSERT INTO default_routine (id, exercise_goal_id)
-VALUES (2, 2);
+INSERT INTO user_routine (id, exercise_goal_id, is_default)
+VALUES (2, 2, true);
 
 -- 부위 강화-상체
-INSERT INTO default_routine (id, exercise_goal_id)
-VALUES (3, 3);
+INSERT INTO user_routine (id, exercise_goal_id, is_default)
+VALUES (3, 3, true);
 
 -- 부위 강화-하체
-INSERT INTO default_routine (id, exercise_goal_id)
-VALUES (4, 4);
+INSERT INTO user_routine (id, exercise_goal_id, is_default)
+VALUES (4, 4, true);
 
 -- 부위 강화 - 코어
-INSERT INTO default_routine (id, exercise_goal_id)
-VALUES (5, 5);
+INSERT INTO user_routine (id, exercise_goal_id, is_default)
+VALUES (5, 5, true);
 
 
 -- 체지방 감소
-INSERT INTO routine_item (id, set_count, exercise_id, d_routine_id)
+INSERT INTO routine_item (id, set_count, exercise_id, routine_id)
 VALUES (1, 3, 1, 1),  -- 플랭크
        (2, 5, 36, 1), -- 케틀벨
        (3, 2, 40, 1), -- 걷기
@@ -104,7 +104,7 @@ VALUES (1, 3, 1, 1),  -- 플랭크
 -- 인터벌
 
 -- 골격근량 증가
-INSERT INTO routine_item (id, set_count, exercise_id, d_routine_id)
+INSERT INTO routine_item (id, set_count, exercise_id, routine_id)
 VALUES (5, 3, 4, 2),  -- 크런치
        (6, 3, 28, 2), -- 스쿼트
        (7, 3, 11, 2), -- 체스트 프레스
@@ -113,7 +113,7 @@ VALUES (5, 3, 4, 2),  -- 크런치
 -- 바벨 로우
 
 -- 부위 강화-상체
-INSERT INTO routine_item (id, set_count, exercise_id, d_routine_id)
+INSERT INTO routine_item (id, set_count, exercise_id, routine_id)
 VALUES (10, 3, 9, 3),  -- 오버헤드프레스
        (11, 3, 10, 3), -- 펙덱플라이
        (12, 3, 11, 3), -- 체스트 프레스
@@ -122,7 +122,7 @@ VALUES (10, 3, 9, 3),  -- 오버헤드프레스
 -- 랫풀다운
 
 -- 부위 강화-하체
-INSERT INTO routine_item (id, set_count, exercise_id, d_routine_id)
+INSERT INTO routine_item (id, set_count, exercise_id, routine_id)
 VALUES (15, 5, 28, 4), -- 스쿼트
        (16, 3, 29, 4), -- 레그프레스
        (17, 3, 30, 4), -- 힙쓰러스트
@@ -131,7 +131,7 @@ VALUES (15, 5, 28, 4), -- 스쿼트
 -- 레그컬
 
 -- 부위 강화 - 코어
-INSERT INTO routine_item (id, set_count, exercise_id, d_routine_id)
+INSERT INTO routine_item (id, set_count, exercise_id, routine_id)
 VALUES (20, 3, 1, 5), -- 플랭크
        (21, 3, 2, 5), -- 버드 독
        (22, 3, 3, 5), -- 롤-아웃

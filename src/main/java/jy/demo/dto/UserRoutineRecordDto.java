@@ -2,6 +2,7 @@ package jy.demo.dto;
 
 import java.time.LocalDateTime;
 import jy.demo.model.UserRoutine;
+import jy.demo.model.UserRoutineRecord;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,12 +13,16 @@ public class UserRoutineRecordDto {
     private Long routineId;
     private Long emojiId;
     private LocalDateTime date;
+    private String goal;
     private int calories;
 
-    public UserRoutineRecordDto(UserRoutine routine) {
+    public UserRoutineRecordDto(UserRoutineRecord routineRecord) {
+        UserRoutine routine = routineRecord.getRoutine();
         this.routineId = routine.getId();
-        this.emojiId = routine.getEmoji();
-        this.date = routine.getCreatedAt();
-        this.calories = routine.getCalorie();
+        this.goal = routine.getExerciseGoal().getGoal();
+
+        this.emojiId = routineRecord.getEmoji();
+        this.date = routineRecord.getCreatedAt();
+        this.calories = routineRecord.getTotalCalorie();
     }
 }

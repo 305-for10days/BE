@@ -2,7 +2,7 @@ package jy.demo.dto;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import jy.demo.model.Routine;
+import jy.demo.model.UserRoutine;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +21,7 @@ public class RoutineDto {
     private String calorie;
     private List<RoutineItemDto> details;
 
-    public RoutineDto(Routine routine) {
+    public RoutineDto(UserRoutine routine) {
         this.id = routine.getId();
         this.goal = routine.getExerciseGoal().getGoal();
         this.details = routine.getRoutineItems()

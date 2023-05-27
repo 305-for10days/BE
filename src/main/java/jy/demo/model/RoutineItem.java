@@ -45,10 +45,6 @@ public class RoutineItem extends Datetime {
     private UserRoutine routine;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "dRoutineId", nullable = true)
-    private DefaultRoutine defaultRoutine;
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "exerciseId")
     private Exercise exercise;
 
