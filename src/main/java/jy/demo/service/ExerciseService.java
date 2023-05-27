@@ -25,7 +25,7 @@ public class ExerciseService {
     }
 
     public Exercise getExerciseRecommend(ExerciseRecommendDto dto) {
-        List<? extends Exercise> exercisesByType = exerciseRepository.findByCategory(dto.getType());
+        List<? extends Exercise> exercisesByType = exerciseRepository.findByCategory(dto.getCategory());
 
         if (exercisesByType.isEmpty()) {
             throw new DataNotFoundException(HttpResponse.EXERCISE_NOT_FOUND);

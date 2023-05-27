@@ -16,13 +16,13 @@ import lombok.Setter;
 public class ExerciseRecommendDto {
 
     private Long WorkoutId;
-    private String type;
+    private String Category;
     private int set;
     private int calorie;
 
     public ExerciseRecommendDto(Exercise exercise, int calorie, int set) {
         this.WorkoutId = exercise.getId();
-        this.type = exercise.getCategory();
+        this.Category = exercise.getCategory();
         this.set = calculateSet(exercise, calorie * set);
         if (this.set == 0) {
             this.set = 1;
