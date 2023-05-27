@@ -18,6 +18,9 @@ import jy.demo.repository.ExerciseGoalRepository;
 import jy.demo.repository.ExerciseRepository;
 import jy.demo.repository.RoutineItemRepository;
 import jy.demo.repository.UserRoutineRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -99,5 +102,15 @@ public class RoutineService {
             .orElseThrow(() -> new DataNotFoundException(HttpResponse.USER_ROUTINE_NOT_FOUND));
 
         userRoutine.setEmoji(dto.getEmojiId());
+    }
+
+    public Page<UserRoutine> getUserRoutineRecord(Long userId, int page) {
+        int size = 10;
+        String sort = "createdAt";
+
+        PageRequest pageable = PageRequest.of(page, size, Sort.by(sort).descending());
+
+        return userRoutineRepository.findAllByUser(new User(userId), pageable);
+
     }
 }

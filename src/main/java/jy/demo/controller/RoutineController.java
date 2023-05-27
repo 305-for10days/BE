@@ -1,16 +1,22 @@
 package jy.demo.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import jy.demo.common.HttpResponse;
 import jy.demo.dto.EmojiDto;
 import jy.demo.dto.IdDto;
 import jy.demo.dto.RoutineDto;
+import jy.demo.dto.UserRoutineRecordDto;
+import jy.demo.model.UserRoutine;
 import jy.demo.security.UserDetailsImpl;
 import jy.demo.service.RoutineService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,4 +63,17 @@ public class RoutineController {
         return HttpResponse.OK.getResponseEntity();
     }
 
+    @GetMapping("/main/{page}")
+    public Map<String, Object> getMain(@AuthenticationPrincipal UserDetailsImpl userDetails,
+        @PathVariable Integer page) {
+        Page<UserRoutine> routines = routineService.getUserRoutineRecord(userDetails.getUserId()
+            , Optional.ofNullable(page).orElse(0));
+
+        return Map.of(
+            "isLast", routines.isLast(),
+            "routines", routines.stream()
+                .map(UserRoutineRecordDto::new)
+                .collect(Collectors.toList())
+        );
+    }
 }

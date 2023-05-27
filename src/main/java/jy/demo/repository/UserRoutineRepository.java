@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import jy.demo.model.User;
 import jy.demo.model.UserRoutine;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -27,4 +29,6 @@ public interface UserRoutineRepository extends JpaRepository<UserRoutine, Long> 
 
 
     Optional<UserRoutine> findByIdAndUser(Long id, User user);
+
+    Page<UserRoutine> findAllByUser(User user, Pageable pageable);
 }
