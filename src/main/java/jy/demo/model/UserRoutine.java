@@ -1,6 +1,8 @@
 package jy.demo.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,21 +14,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
+@Setter
 @Entity
 @Builder
 @DynamicUpdate
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class UserRoutine extends Datetime implements Routine {
 
     @Id
@@ -50,4 +53,19 @@ public class UserRoutine extends Datetime implements Routine {
 
     @Column(name = "emotion")
     private String emotion;
+
+    public void addRoutineItem(RoutineItem routineItem) {
+        if (Objects.isNull(this.routineItems)) {
+            this.routineItems = new ArrayList<>();
+        }
+        this.routineItems.add(routineItem);
+
+        if (!Objects.equals(routineItem.getRoutine(), this)) {
+            routineItem.setRoutine(this);
+        }
+    }
+
+    public UserRoutine(Long id) {
+        this.id = id;
+    }
 }

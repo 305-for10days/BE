@@ -60,7 +60,7 @@ create table exercise_goal (
                                id bigint not null,
                                created_at timestamp with time zone default current_timestamp,
                                updated_at timestamp with time zone default current_timestamp,
-                               purpose varchar(100) not null,
+                               goal varchar(100) not null,
                                primary key (id)
 );
 

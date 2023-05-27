@@ -15,10 +15,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
+@Setter
 @Entity
 @Builder
 @DynamicUpdate
@@ -49,4 +51,13 @@ public class RoutineItem extends Datetime {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "exerciseId")
     private Exercise exercise;
+
+    public void setRoutine(UserRoutine routine) {
+        this.routine = routine;
+
+        if (!routine.getRoutineItems().contains(this)) {
+            routine.getRoutineItems().add(this);
+        }
+    }
+
 }

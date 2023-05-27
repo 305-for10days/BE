@@ -15,7 +15,7 @@ public class ExerciseGoalResDto {
     private List<RoutineDto> routine;
 
     public ExerciseGoalResDto(ExerciseGoal exerciseGoal, List<? extends Routine> routines) {
-        this.goal = exerciseGoal.getPurpose();
+        this.goal = exerciseGoal.getGoal();
         this.routine = routines
             .stream().map(RoutineDto::new).collect(Collectors.toList());
     }

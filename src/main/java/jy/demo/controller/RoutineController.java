@@ -2,11 +2,15 @@ package jy.demo.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import jy.demo.common.HttpResponse;
 import jy.demo.dto.RoutineDto;
 import jy.demo.security.UserDetailsImpl;
 import jy.demo.service.RoutineService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +35,15 @@ public class RoutineController {
         // TODO : exerciseGoalIds 를 어떻게 가져올지 고민해보자.
         return routineService.getLatestUserRoutine(userDetails.getUserId(), List.of(1L, 2L, 3L, 4L, 5L))
             .stream().map(RoutineDto::new).collect(Collectors.toList());
+    }
+
+    @PostMapping("/user/routine")
+    public ResponseEntity<String> saveUserExerciseGoals(@AuthenticationPrincipal UserDetailsImpl userDetails,
+        @RequestBody RoutineDto dto) {
+
+        routineService.saveUserRoutine(userDetails.getUserId(), dto);
+
+        return HttpResponse.OK.getResponseEntity();
     }
 
 }
