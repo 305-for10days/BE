@@ -30,12 +30,10 @@ public class TimeAndCountBasedExercise extends Exercise {
 
     @Override
     public ExerciseResDto toExerciseResDto() {
-        String type = ExerciseType.TIME_AND_COUNT_BASED.name();
-        int cutLength = 8;
 
         return ExerciseResDto.builder()
             .id(this.getId())
-            .type(type.substring(0, type.length() - cutLength))
+            .type(ExerciseType.TIME_AND_COUNT_BASED.name())
             .name(this.getName())
             .description(this.getDescription())
             .category(this.getCategory())
