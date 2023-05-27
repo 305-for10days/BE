@@ -15,14 +15,14 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ExerciseRecommendDto {
 
-    private Long WorkoutId;
-    private String Category;
+    private Long workoutId;
+    private String category;
     private int set;
     private int calorie;
 
     public ExerciseRecommendDto(Exercise exercise, int calorie, int set) {
-        this.WorkoutId = exercise.getId();
-        this.Category = exercise.getCategory();
+        this.workoutId = exercise.getId();
+        this.category = exercise.getCategory();
         this.set = calculateSet(exercise, calorie * set);
         if (this.set == 0) {
             this.set = 1;
