@@ -52,7 +52,7 @@ public class RoutineService {
     }
 
 
-    public void saveUserRoutine(Long userId, RoutineDto dto) {
+    public Long saveUserRoutine(Long userId, RoutineDto dto) {
         ExerciseGoal exerciseGoal = exerciseGoalRepository.findByGoal(dto.getGoal())
             .orElseThrow(() -> new DataNotFoundException(HttpResponse.EXERCISE_GOAL_NOT_FOUND));
 
@@ -64,7 +64,8 @@ public class RoutineService {
 
         List<RoutineItem> routineItems = generateRoutineItem(dto.getDetails());
         routineItems.forEach(userRoutine::addRoutineItem);
-        userRoutineRepository.save(userRoutine);
+
+        return userRoutineRepository.save(userRoutine).getId();
     }
 
     private List<RoutineItem> generateRoutineItem(List<RoutineItemDto> itemDtos) {

@@ -2,11 +2,10 @@ package jy.demo.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import jy.demo.common.HttpResponse;
+import jy.demo.dto.IdDto;
 import jy.demo.dto.RoutineDto;
 import jy.demo.security.UserDetailsImpl;
 import jy.demo.service.RoutineService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,12 +37,12 @@ public class RoutineController {
     }
 
     @PostMapping("/user/routine")
-    public ResponseEntity<String> saveUserExerciseGoals(@AuthenticationPrincipal UserDetailsImpl userDetails,
+    public IdDto saveUserExerciseGoals(@AuthenticationPrincipal UserDetailsImpl userDetails,
         @RequestBody RoutineDto dto) {
 
-        routineService.saveUserRoutine(userDetails.getUserId(), dto);
+        Long id = routineService.saveUserRoutine(userDetails.getUserId(), dto);
 
-        return HttpResponse.OK.getResponseEntity();
+        return new IdDto(id);
     }
 
 }
