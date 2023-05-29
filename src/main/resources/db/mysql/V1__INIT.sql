@@ -13,6 +13,7 @@ create table _user (
                        social_provider_key varchar(255) not null,
                        user_role varchar(50) not null,
                        username varchar(100) not null,
+                       is_profile_exist boolean default false,
                        primary key (id)
 ) engine=innoDB;
 

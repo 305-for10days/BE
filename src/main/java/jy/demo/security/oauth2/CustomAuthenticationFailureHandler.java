@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
+
     private final ObjectMapper mapper;
 
     public CustomAuthenticationFailureHandler() {
@@ -24,13 +25,14 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 
 
     @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+        AuthenticationException exception) throws IOException, ServletException {
 
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
 
         ResponseEntity<String> responseEntity =
-            HttpResponse.INVALID_ID_PASSWORD.getResponseEntity();
+            HttpResponse.INVALID_KAKAO_OAUTH.getResponseEntity();
 
         String message = mapper.writeValueAsString(responseEntity);
 

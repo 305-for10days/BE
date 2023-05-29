@@ -34,9 +34,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         User user = userService.saveOrUpdate(customOAuth2User);
         customOAuth2User.setId(user.getId());
+        customOAuth2User.setIsProfileExist(user.isProfileExist());
 
 //        String accessToken = userRequest.getAccessToken().getTokenValue();
         return customOAuth2User;
     }
-
 }

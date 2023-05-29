@@ -1,20 +1,25 @@
 package jy.demo.security.jwt.provider;
 
 
+import static jy.demo.security.jwt.provider.JwtTokenValue.CLAIM_EXPIRED_DATE;
+import static jy.demo.security.jwt.provider.JwtTokenValue.CLAIM_USER_EMAIL;
+import static jy.demo.security.jwt.provider.JwtTokenValue.CLAIM_USER_ID;
+import static jy.demo.security.jwt.provider.JwtTokenValue.CLAIM_USER_NICK;
+import static jy.demo.security.jwt.provider.JwtTokenValue.JWT_SECRET;
+
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
-import static jy.demo.security.jwt.provider.JwtTokenValue.*;
+import jy.demo.common.HttpResponse;
+import jy.demo.exception.DataNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 
 @Component
@@ -22,16 +27,16 @@ public class JwtDecoder {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    public Map<String, String> decode(String token){
+    public Map<String, String> decode(String token) {
         DecodedJWT decodedJWT = isValidToken(token)
-            .orElseThrow(() -> new IllegalArgumentException("토큰이 유효하지 않습니다"));
+            .orElseThrow(() -> new DataNotFoundException(HttpResponse.INVALID_TOKEN));
 
         Date expireDate = decodedJWT
             .getClaim(CLAIM_EXPIRED_DATE)
             .asDate();
         Date now = new Date();
         if (expireDate.before(now)) {
-            throw new IllegalArgumentException("토큰이 유효하지 않습니다 ");
+            throw new DataNotFoundException(HttpResponse.INVALID_TOKEN);
         }
 
         Map<String, String> jwtData = new HashMap<>();
@@ -52,10 +57,10 @@ public class JwtDecoder {
         return jwtData;
     }
 
-    private Optional<DecodedJWT> isValidToken(String token){
+    private Optional<DecodedJWT> isValidToken(String token) {
         DecodedJWT jwt = null;
 
-        try{
+        try {
             Algorithm algorithm = Algorithm.HMAC256(JWT_SECRET);
             JWTVerifier verifier = JWT
                 .require(algorithm)

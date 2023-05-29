@@ -4,6 +4,7 @@ import static jy.demo.security.jwt.provider.JwtTokenValue.CLAIM_EXPIRED_DATE;
 import static jy.demo.security.jwt.provider.JwtTokenValue.CLAIM_USER_EMAIL;
 import static jy.demo.security.jwt.provider.JwtTokenValue.CLAIM_USER_ID;
 import static jy.demo.security.jwt.provider.JwtTokenValue.CLAIM_USER_NICK;
+import static jy.demo.security.jwt.provider.JwtTokenValue.CLAIM_USER_PROFILE_EXIST;
 import static jy.demo.security.jwt.provider.JwtTokenValue.JWT_SECRET;
 import static jy.demo.security.jwt.provider.JwtTokenValue.JWT_TOKEN_VALID_MILLI_SEC;
 
@@ -22,10 +23,11 @@ public final class JwtTokenUtils {
         String token = null;
         try {
             token = JWT.create()
-                .withIssuer("huddleUp")
+                .withIssuer("JY")
                 .withClaim(CLAIM_USER_EMAIL, userInfo.getEmail())
                 .withClaim(CLAIM_USER_ID, userInfo.getId())
                 .withClaim(CLAIM_USER_NICK, userInfo.getName())
+                .withClaim(CLAIM_USER_PROFILE_EXIST, userInfo.getIsProfileExist())
                 .withClaim(CLAIM_EXPIRED_DATE, new Date(System.currentTimeMillis() + JWT_TOKEN_VALID_MILLI_SEC))
                 .sign(generateAlgorithm());
 

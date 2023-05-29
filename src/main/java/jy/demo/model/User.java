@@ -1,6 +1,7 @@
 package jy.demo.model;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -57,11 +58,23 @@ public class User extends Datetime {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
+    @Column(nullable = false)
+    private boolean isProfileExist;
+
     public User update(CustomOAuth2User oAuth2User) {
         this.email = oAuth2User.getEmail();
         this.username = oAuth2User.getName();
 
         return this;
+    }
+
+    public void setProflie(Profile profile) {
+        this.profile = profile;
+
+        if (!Objects.equals(this, profile.getUser())) {
+            profile.setUser(this);
+        }
+        this.isProfileExist = true;
     }
 
     public User(Long id) {

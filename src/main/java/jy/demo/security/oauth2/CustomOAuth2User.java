@@ -18,6 +18,7 @@ public class CustomOAuth2User implements OAuth2User {
     protected Long id;
     protected String name;
     protected String email;
+    protected Boolean isProfileExist;
     protected String socialProviderKey;
 
     protected Collection<? extends GrantedAuthority> authorities = new ArrayList<>();

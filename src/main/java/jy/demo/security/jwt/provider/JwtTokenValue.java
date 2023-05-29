@@ -20,6 +20,7 @@ public final class JwtTokenValue {
     public static final String CLAIM_USER_NICK = "USER_NICK";
     public static final String CLAIM_USER_ID = "USER_ID";
     public static final String CLAIM_USER_EMAIL = "USER_EMAIL";
+    public static final String CLAIM_USER_PROFILE_EXIST = "USER_PROFILE_EXIST";
 
 
     public static String JWT_SECRET;

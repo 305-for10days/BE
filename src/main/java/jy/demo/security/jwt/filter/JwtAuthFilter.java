@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import jy.demo.common.HttpResponse;
+import jy.demo.exception.TokenAuthenticationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -47,7 +48,7 @@ public class JwtAuthFilter extends AbstractAuthenticationProcessingFilter {
 
             response.getWriter().write(message);
 
-            throw new IllegalArgumentException();
+            throw new TokenAuthenticationException("Token not found");
         }
 
         JwtToken jwtToken = new JwtToken(
@@ -83,6 +84,16 @@ public class JwtAuthFilter extends AbstractAuthenticationProcessingFilter {
         AuthenticationException failed
     ) throws IOException, ServletException {
         SecurityContextHolder.clearContext();
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+
+        ResponseEntity<String> responseEntity =
+            HttpResponse.INVALID_TOKEN.getResponseEntity();
+
+        String message = mapper.writeValueAsString(responseEntity);
+
+        response.getWriter().write(message);
 
         super.unsuccessfulAuthentication(
             request,
